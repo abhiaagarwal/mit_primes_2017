@@ -1,0 +1,57 @@
+\subsection*{M4}
+
+For integers $n \geq 0$, let:
+
+\begin{gather} \label{eq:m4}
+    a_n = \sum_{i=0}^{n} \frac{1}{i+1} {{n+i}\choose{n-i}} {{2i}\choose{i}}
+\end{gather}
+
+Identify the sequence $(a_n)_n$ by name and prove that an is the claimed sequence. (You
+may use the Online Encyclopedia of Integer Sequences, http://oeis.org/.)
+
+\subsubsection*{Solution}
+
+$(a_n)_n$ is the sequence of the \href{http://mathworld.wolfram.com/SchroederNumber.html}{Shroeder Numbers} (\href{https://oeis.org/A006318}{OEIS A006318}), the number of paths between $(0, 0)$ and $(n, n)$ by moving one unit up, down, left, or right.
+
+\begin{proof}
+
+If \ref{eq:m4} is the sequence describing the Shroeder Numbers, it must satisfy the recurrence relation:
+
+\begin{gather} \label{eq:sh_recurrence}
+    S_n = S_{n-1} + \sum_{k=1}^{n-1} {S_k} {S_{n-1-k}}
+\end{gather}
+
+The closed form of \ref{eq:sh_recurrence} is:
+
+\begin{gather} \label{eq:sh_hypo}
+    S_n = _{2}F_{1}({-n}, n+1; 2; {-1})
+\end{gather}
+
+\ref{eq:sh_hypo} can be evaluated using the series form of the Gaussian Hypogeometric Function. Since the first term, ${-n} \leq 0$ for all $n \geq 0$, the series terminates leaving:
+
+\begin{gather} \label{eq:sh_series}
+    S_n = \sum_{i=0}^{n} ({-1})^{n} {{n}\choose{i}} {\frac{(n+1)_{(i)}}{2_{(i)}}} ({-1})^{n}
+\end{gather}
+
+Simplifying the binomial coeffecients and rising factorials yields:
+
+\begin{align} \label{eq:sh_series_simple}
+    S_n &=  \sum_{i=0}^{n} {{n}\choose{i}} {\frac{(n+1)_{(i)}}{2_{(i)}}} \\
+    &= \sum_{i=0}^{n} {\frac{n!}{(i!)(n-i)!}} {\frac{(n+1)_{(i)}}{2_{(i)}}} \\
+    &= \sum_{i=0}^{n} {\frac{n!}{(n-i)!}} {{n + i}\choose{i}} {\frac{1}{2_{(i)}}} \\
+    &= \sum_{i=0}^{n} {\frac{n!}{(n-i)!}} {\frac{(n+i)!}{i!n!}} {\frac{1}{2_{(i)}}} \\
+    &= \sum_{i=0}^{n} {\frac{(n+i)!}{(n-i)!}} {\frac{1}{2_{(i)}{i!}}} \\
+    &= \sum_{i=0}^{n} {\frac{(n+i)!}{(n-i)! (2i)!}} {\frac{(2i)!}{2_{(i)}{i!}}} \\
+    &= \sum_{i=0}^{n} {{n+i}\choose{n-i}} {\frac{(2i)!}{2_{(i)}{i!}}} \\
+    &= \sum_{i=0}^{n} {{n+i}\choose{n-i}} {\frac{(2i)!}{{(i+1)!}{i!}}} \\
+    &= \sum_{i=0}^{n} {\frac{1}{i+1}} {{n+i}\choose{n-i}} {\frac{(2i)!}{{i!}{i!}}} \\
+    &= \sum_{i=0}^{n} {\frac{1}{i+1}} {{n+i}\choose{n-i}} {{2i}\choose{i}}
+\end{align}
+
+So,
+
+\begin{gather*}
+    S_n = a_n
+\end{gather*}
+
+\end{proof}

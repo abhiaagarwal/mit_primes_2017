@@ -1,0 +1,41 @@
+\subsection*{G3}
+
+There are 100 marbles in a bag: 30 red marbles, 60 green marbles and 10 yellow marbles. We select three of them uniformly at random, independently and with replacement (meaning we put the ball back after it is removed). Let $E$ be the event “all three marbles are the same color”.
+
+\subsubsection*{Part A}
+
+Find the probability of $E$.
+
+\begin{proof}
+    E can be defined as the union of three mutually exclusive different events:
+
+    \begin{equation} \label{prob:union}
+        P(E) = P(R \cup G \cup Y)
+    \end{equation}
+
+    Their individual probabilities are:
+
+    \begin{gather}
+        P(R) = \left(\frac{30}{100}\right)^3 = \left(\frac{3}{10}\right)^3 = \frac{27}{1000} \\
+        P(G) = \left(\frac{60}{100}\right)^3 = \left(\frac{6}{10}\right)^3 = \frac{216}{1000} \\
+        P(Y) = \left(\frac{10}{100}\right)^3 = \left(\frac{1}{10}\right)^3 = \frac{1}{1000}
+    \end{gather}
+
+    So, from equation \ref{prob:union} we can say:
+
+    \begin{gather*}
+        P(E) = P(R \cup G \cup Y) = P(R) + P(G) + P(Y) - P(R \cap G \cap Y) \\ 
+        \text{R, G, P are independent from eachother so their intersection is 0} \\
+        P(E) = P(R) + P(G) + P(Y) \\
+        P(E) = \frac{27}{1000} + \frac{216}{1000} + \frac{1}{1000} \\
+        P(E) = \frac{244}{1000} = 24.4\%
+    \end{gather*}
+\end{proof}
+
+\subsubsection*{Part B}
+
+Find the probability of $E$, given that at least one selected marble is red.
+
+\begin{proof}
+    
+\end{proof}

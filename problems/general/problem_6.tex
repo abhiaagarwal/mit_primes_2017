@@ -1,0 +1,69 @@
+\subsection*{G6}
+
+Let $a$, $b$, $c$ be positive real numbers for which $min(ab, bc, ca) \geq 1$.
+
+\subsubsection*{Part A}
+
+Prove that $\log{abc} \geq \sqrt[3]{\log^3{a} + \log^3{b} + \log^3{c}}$
+
+\begin{proof}
+    \begin{align*}
+        \log^3{abc} &\geq \log^3{a} + \log^3{b} + \log^3{c} \\ 
+        (\log{a} + \log{b} + \log{c} )^3 &\geq \log^3{a} + \log^3{b} + \log^3{c} \\
+        \begin{split}
+            6\log{a}\log{b}\log{c} + 3\log^2{a}\log{b} \\
+            + 3\log{a}\log^2{b} + 3\log^2{a}\log{c} \\
+            + 3\log{a}\log^2{c} + \log^3{a} \\
+            + 3\log{b}\log^2{c} + 3\log^2{b}\log{c} \\
+            + \log^3{b} + \log^3{c} &\geq \log^3{a} + \log^3{b} + \log^3{c}
+        \end{split} \\
+        \begin{split} 
+            \log^2{a}\log{b}+ \log^2{a}\log{c}  \\
+            + \log{a}\log^2{b} + \log^2{b}\log{c} \\
+            + \log{b}\log^2{c} + \log{a}\log^2{c}  \\
+            + 2\log{a}\log{b}\log{c} &\geq 0
+        \end{split} \\
+        \begin{split}
+            (\log{a} + \log{b}) \times (\log{b} + \log{c}) \times \\
+            (\log{a} + \log{c}) &\geq 0
+        \end{split} \\
+        \log{ab}\log{bc}\log{ac} &\geq 0
+    \end{align*}
+
+We know from the given that:
+
+\begin{gather*}
+    min(ab, bc, ca) \geq 1 \\
+    \log{ab}, \log{bc}, \log{ca} \geq \log{1} = 0
+\end{gather*}
+
+Therefore, since all the factors are either greater than or equal to 0, their product must be greater than or equal to 0.
+
+\end{proof}
+
+\subsubsection*{Part B}
+
+Determine for which triples $(a, b, c)$ the equality holds.
+
+\begin{proof}
+    Set the equation equal to 0, ignoring the inequality.
+
+    \begin{equation*}
+    \log{ab}\log{bc}\log{ac} = 0
+    \end{equation*}
+
+    This implies that at least one of the logarithms must be equal to 0. Let's choose $log{ab}$
+    
+    \begin{gather*}
+        \log{ab} = 0 \\ 
+        ab = 1
+    \end{gather*}
+
+    If we say $a = n$, then $b = \frac{1}{n}$. Therefore, since $bc \geq 1$, and $ac \geq 1$, $c \geq \frac{1}{b} =  n$, or $c \geq \frac{1}{a} =  \frac{1}{n}$. The intersection of these two solutions varies depending on the interval of $n$. So, $c \geq max(\frac{1}{n}, n)$.
+
+    The triplet is then:
+
+    \begin{gather*}
+        (a, b, c) = \left(n, \frac{1}{n}, \geq max\left(\frac{1}{n}, n\right)\right)
+    \end{gather*}
+\end{proof}

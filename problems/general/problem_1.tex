@@ -1,0 +1,73 @@
+\subsection*{G1}
+
+We have $n$ fair six-sided dice, labeled 1 through 6. Let $p_n$ be the probability that when rolled, the product of all $n$ numbers shown is at most 6.
+
+\subsubsection*{Part A}
+
+Compute the value of $p_2$
+
+\begin{proof}
+    $S$ is the set of all sides of the dice. There are 36 unique combinations one can get by rolling 2 die.
+
+    
+    \begin{gather*}
+        \begin{tabular}{llllll}
+    (1,1) & (1,2) & (1,3) & (1,4) & (1,5) & (1,6) \\
+    (2,1) & (2,2) & (2,3) & (2,4) & (2,5) & (2,6) \\
+    (3,1) & (3,2) & (3,3) & (3,4) & (3,5) & (3,6) \\
+    (4,1) & (4,2) & (4,3) & (4,4) & (4,5) & (4,6) \\
+    (5,1) & (5,2) & (5,3) & (5,4) & (5,5) & (5,6) \\
+    (6,1) & (6,2) & (6,3) & (6,4) & (6,5) & (6,6)
+        \end{tabular}
+    \end{gather*}
+
+    Their products are: 
+
+    \begin{gather*}
+        \begin{tabular}{llllll}
+    1 & 2 & 3 & 4 & 5 & 6 \\
+    2 & 4 & 6 & 8 & 10 & 12 \\
+    3 & 6 & 9 & 12 & 15 & 18 \\
+    4 & 8 & 12 & 16 & 20 & 24 \\
+    5 & 10 & 15 & 20 & 25 & 30 \\
+    6 & 12 & 18 & 24 & 30 & 36
+        \end{tabular}
+    \end{gather*}
+
+    There are 14 cases where $P \leq 6$, so $p_2 = \frac{14}{36} = 38.9\%$
+\end{proof}
+
+\subsubsection*{Part B}
+
+Determine $p_n$ for any integer $n \geq 2$.
+
+\begin{proof}
+    I was unable to figure out the solution by hand, so I wrote a python program.
+
+    \newpage
+    \lstinputlisting[language=Python, firstline=5, lastline=27]{code/g1.py}
+
+    Running the above program with inputs of $1, 2, 3, 4, 5, 6, 7, 8, 9$ mapped to $6, 14, 25, 39, 56, 76, 99, 125, 154$. Using the OEIS, I found that that the sequence is the Second Pentagonal Numbers offset by ${-1}$. Knowing this, I conjectured that the matches for each n is:
+
+    \begin{align} \label{eq:dice_matches_unshifted}
+        m_n &= \frac{3n^2 + n}{2} - 1 \\
+        &= \frac{(3n-2)(n+1)}{2}
+    \end{align}
+
+    \newpage
+
+    However, $m_2$ gave 6, the first index in my found sequence, so I needed to shift \ref{eq:dice_matches_unshifted} up by one index, so:
+
+    \begin{align} \label{eq:dice_matches}
+        m_n = \frac{(3n+1)(n+2)}{2}
+    \end{align}
+
+    Our sample space for each $n$ is $6^n$, so to get our probability we take \ref{eq:dice_matches} and divide it by the sample space, giving:
+
+    \begin{gather} \label{eq:dice_probability}
+        p_n = \frac{m_n}{6^n} = \frac{(3n+1)(n+2)}{2 * 6^n}
+    \end{gather}
+
+    Setting $n=2$ into \ref{eq:dice_probability} gives $\frac{28}{72}$, which is equivalent to the answer found in Part A of this problem.
+
+\end{proof}

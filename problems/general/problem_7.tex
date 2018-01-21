@@ -1,0 +1,49 @@
+\subsection*{G7}
+
+For each integer $n \geq 1$ let $\tau_n$ denote the set of nondegenerate triangles whose side lengths are in ${1, \dots , n}$. Moreover, for each triangle $\triangle{ABC}$, let:
+
+\begin{gather} \label{eq:g7}
+    D(\triangle{ABC}) = min(|AB - AC|, |BC - BA|, |CA - CB|)
+\end{gather}
+
+\subsubsection*{Part A}
+
+For each triangle, to maximize the minimum side differences, each triangle should have a constant difference from each side. It doesn't matter if a triangle has one side with a great difference, since $D$ takes a minimum value. Therefore, we can say the sides of the triangle are:
+
+\begin{gather} \label{eq:triangle_equalities}
+    a > b > c \\
+    a = b - k = c - 2k \\
+    \begin{align}
+        D(a, b, c) &= min(|a-b|, |a-c|, |b-c|) \\
+        &= min(|b-k-b|, |c-2k-c|, |a+k-(a+2k)|)  \\
+        &= min(|-2k|, |-2k|, |-k|) = k
+    \end{align}
+\end{gather}
+
+Where $k$ is the constant difference between each side. To discover the value of $k$, one must utilise triangle inequalities:
+
+\begin{gather} \label{eq:triangle_inequalities}
+    a < b + c \\
+    a < a + k + a + 2k \\
+    -a < 3k \\
+    a > -3k \\
+    a > 3k \\
+    \text{k is a difference, so the negative is absorbed into the variable} \\
+    a = n \\
+    n > 3k \\
+    k < \frac{n}{3} \\
+    k = floor\left(\frac{n}{3}\right) \\
+    \text{The value has to be adjusted by an index of $1$} \\
+    \text{because multiples of 3 can be degenerate cases} \\
+    k = floor\left(\frac{n-1}{3}\right) \\
+\end{gather}
+
+Subsituting the $k$ value from \ref{eq:triangle_inequalities} into \ref{eq:triangle_equalities} gives:
+
+\begin{gather}
+    max(D(\triangle{\tau_n})) = floor\left(\frac{n-1}{3}\right)
+\end{gather}
+
+\subsubsection*{Part B}
+
+For which $n$ is this maximum value achieved for a unique triangle in $\tau_n$ (up to congruence)?

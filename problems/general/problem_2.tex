@@ -1,0 +1,30 @@
+\subsection*{G2}
+
+Fix an integer $d \geq 1$, and consider polynomials $P(x)$ of degree $d$ which satisfy:
+
+\begin{gather} \label{eq:g2}
+    P(n) = n + \frac{1}{n}
+\end{gather}
+
+for $n = 1, 2, \dots, 99$. For each $d$, determine all possible values of $P(100)$ or show that no
+such polynomials $P$ of degree $d$ exist.
+
+\subsubsection*{Solution}
+
+\begin{proof}
+
+The generic equation of a polynomial of degree $d$ is:
+
+\begin{gather} \label{eq:polynomial}
+    P(n) = a_{d}n^{d} + a_{d-1}n^{d-1} + a_{d-2}n^{d-2} \dots + a_{2}n^{2} + a_{1}n^{1} + a_{0}
+\end{gather}
+
+Setting \ref{eq:polynomial} equal to \ref{eq:g2} and simplyiying:
+
+\begin{gather}
+    a_{d}n^{d} + a_{d-1}n^{d-1} + a_{d-2}n^{d-2} \dots + a_{2}n^{2} + a_{1}n^{1} + a_{0} = n + \frac{1}{n} \\
+    a_{d}n^{d+1} + a_{d-1}n^{d} + a_{d-2}n^{d-1} \dots + a_{2}n^{3} + a_{1}n^{2} + a_{0}n = n^{2} + 1 \\
+    a_{d}n^{d+1} + a_{d-1}n^{d} + a_{d-2}n^{d-1} \dots + a_{2}n^{3} + a_{1}n^{2} - n^{2} + a_{0}n - 1 = 0
+\end{gather}
+
+\end{proof}

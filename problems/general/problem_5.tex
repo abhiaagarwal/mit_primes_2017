@@ -1,0 +1,59 @@
+\subsection*{G5}
+
+Consider the following six points in the coordinate plane:
+
+\begin{equation*}
+A = (0,1), B = (0,3), C = (1,4), D = (4,9), E = (6,7), F = (6,8)
+\end{equation*}
+
+For a point $P$ in the coordinate plane let $S(P) = PA + PB + PC + PD + PE + PF$
+
+\subsubsection*{Part A}
+
+Prove that S(P) is minimized at some point P.
+
+\begin{proof}
+    By the distance formula, we know that:
+    
+    \begin{multline*}
+        S(P) = \sqrt{(P_x - A_x)^2 + (P_y - A_y)^2} + \sqrt{(P_x - B_x)^2 + (P_y - B_y)^2} + \dots \\
+        + \sqrt{(P_x - F_x)^2 + (P_y - F_y)^2}
+    \end{multline*}
+
+    By substitution, we can find that the total distance function is equal to:
+
+    \begin{multline}
+        S(P) = \sqrt{(x)^2 + (y - 1)^2} + \sqrt{(x)^2 + (y - 3)^2} + \sqrt{(x - 1)^2 + (y - 4)^2} \\
+        + \sqrt{(x - 4)^2 + (y - 9)^2} + \sqrt{(x - 6)^2 + (y - 7)^2} + \sqrt{(x - 6)^2 + (y - 8)^2}
+    \end{multline}
+
+    The point will be between the boundaries of the minimum and maximum $x$-value and the minimum and maximum $y$-value, so $x \in [0, 6]$ and $y \in [1,9]$. By the extreme value theorem, we know that $S(P)$ must have a minimum and maximum in those intervals. 
+
+\end{proof}
+
+\subsubsection*{Part B}
+
+Determine the value of that minimum.
+
+\begin{proof}
+    P is a \href{https://en.wikipedia.org/wiki/Geometric_median}{Geometric Median}, which cannot be solved analytically. I wrote a python program to solve it:
+
+    \lstinputlisting[language=Python]{code/g5.py}
+
+    Running the above program with the given points, with Python 3.6.3 on MacOS, yields: 
+
+    \begin{lstlisting}[language=Python]
+    >>> geometric_median(
+    >>>    [(0,1),(0,3),(1,4),(4,9),(6,7),(6,8)]
+    >>> )
+    array([1.71518827,  4.42938511])
+    \end{lstlisting}
+
+    Therefore, we can conclude that $P \approx (1.7152, 4.4294)$
+
+    Solving $S(P)$ with the found $P$:
+
+    \begin{gather*}
+    S(1.7152, 4.4294) \approx 22.5855
+    \end{gather*}
+\end{proof}
